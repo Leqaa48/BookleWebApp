@@ -1,0 +1,68 @@
+﻿@model BookleWebApp.Models.Book
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4>Book Information</h4>
+                    <hr />
+                    <dl class="row">
+                        <!-- Title -->
+                        <dt class="col-sm-3 fw-bold">Title</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+
+                        <!-- Author -->
+                        <dt class="col-sm-3 fw-bold">Author</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Author)</dd>
+
+                        <!-- Price -->
+                        <dt class="col-sm-3 fw-bold">Price</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Price)</dd>
+
+                        <!-- Description -->
+                        <dt class="col-sm-3 fw-bold">Description</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+                        <!-- Stock Quantity -->
+                        <dt class="col-sm-3 fw-bold">Stock Quantity</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.StockQuantity)</dd>
+
+                        <!-- Book Language -->
+                        <dt class="col-sm-3 fw-bold">Language</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.BookLanguage)</dd>
+
+                        <!-- Category -->
+                        <dt class="col-sm-3 fw-bold">Category</dt>
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Category.Name)</dd>
+
+                        <!-- Book Image -->
+                        <dt class="col-sm-3 fw-bold">Book Cover</dt>
+                        <dd class="col-sm-9">
+                            @if (!string.IsNullOrEmpty(Model.BookImage))
+                            {
+                                <img src="@Model.BookImage" alt="Book Image" class="img-fluid" style="max-width: 150px;" />
+                            }
+                            else
+                            {
+                                <span>No image available</span>
+                            }
+                        </dd>
+
+                    </dl>
+
+                    <!-- Edit Button -->
+                    <div class="text-center mt-4">
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn theme-btn">Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />

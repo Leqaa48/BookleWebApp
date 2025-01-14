@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BookleWebApp.Models.Order>
+
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-success">Completed Orders</h2>
+        <div>
+            <a asp-action="Index" asp-controller="Orders" class="btn btn-secondary me-2">All Orders</a>
+            <a asp-action="Pending" asp-controller="Orders" class="btn btn-warning me-2">Pending Orders</a>
+            <a asp-action="Cancelled" asp-controller="Orders" class="btn btn-danger">Cancelled Orders</a>
+        </div>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <p class="text-center text-muted">No completed orders available.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped table-hover" id="myTable">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.First().User.FullName)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().OrderDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().City)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Status)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.User.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.City)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-sm btn-outline-info" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="bi bi-eye"></i> Details
+                            </a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

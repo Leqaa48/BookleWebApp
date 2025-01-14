@@ -1,0 +1,161 @@
+﻿@model IEnumerable<Book>
+@inject SignInManager<ApplicationUser> _signInManager
+@{
+    ViewData["Title"] = "Shop";
+}
+
+
+<!-- Shop Section Start -->
+<section class="shop-section fix section-padding">
+    <div class="container">
+        <div class="shop-default-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="woocommerce-notices-wrapper wow fadeInUp" data-wow-delay=".3s">
+                        <p>Showing @Model.Count() Results </p>
+                        <div class="form-clt">
+                            <div class="icon">
+                                <a asp-action="ShopList" asp-controller="Books"><i class="fas fa-list"></i></a>
+                            </div>
+                            <div class="icon-2 active">
+                                <a asp-action="Shop" asp-controller="Books"><i class="fa-sharp fa-regular fa-grid-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 order-2 order-md-1 wow fadeInUp" data-wow-delay=".3s">
+                    <div class="main-sidebar">
+                        <div class="single-sidebar-widget">
+                            <div class="wid-title">
+                                <h5>Search</h5>
+                            </div>
+                            <form asp-action="Shop" method="get" class="search-toggle-box">
+                                <div class="input-area search-container">
+                                    <input class="search-input" type="text" name="query" placeholder="Search here"
+                                           value="@(ViewBag.SearchQuery ?? "")">
+                                    <button class="cmn-btn search-icon" type="submit">
+                                        <i class="far fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                       @*  <div class="single-sidebar-widget mb-50">
+                            <div class="wid-title">
+                                <h5>Filter By Price</h5>
+                            </div>
+                            <div class="range__barcustom">
+                                <div class="slider">
+                                    <div class="progress" style="left: 15.29%; right: 58.9%;"></div>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" class="range-min" min="0" max="1000" value="0">
+                                    <input type="range" class="range-max" min="5" max="1000" value="100">
+                                </div>
+                                <div class="range-items">
+                                    <div class="price-input">
+                                        <div class="d-flex align-items-center">
+                                            <a href="shop-left-sidebar.html" class="filter-btn mt-2 me-3">Filter</a>
+                                            <div class="field">
+                                                <span>Price:</span>
+                                            </div>
+                                            <div class="field">
+                                                <span>$</span>
+                                                <input type="number" class="input-min" value="0">
+                                            </div>
+                                            <div class="separators">-</div>
+                                            <div class="field">
+                                                <span>$</span>
+                                                <input type="number" class="input-max" value="100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> *@
+                        <div class="single-sidebar-widget">
+                            <div class="wid-title">
+                                <h5>Categories</h5>
+                            </div>
+                            <div class="categories-list">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    @foreach (var cat in ViewBag.Categories){
+                                        <li class="nav-item" role="presentation">
+                                            <a asp-action="BooksInCategory" asp-controller="Books" asp-route-id=@cat.Id>
+                                                <button class="nav-link " id="pills-arts-tab" >
+                                                    @cat.Name
+                                                </button>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-8 order-1 order-md-2">
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-arts" role="tabpanel"
+                             aria-labelledby="pills-arts-tab" tabindex="0">
+                            <div class="row">
+                                @foreach(var book in Model){
+                                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                                        <div class="shop-box-items">
+                                            <div class="book-thumb center">
+                                                <a asp-action="BookDetails" asp-controller="Books" asp-route-id=@book.Id><img src=@book.BookImage alt="img"></a>
+                                                <ul class="shop-icon d-grid justify-content-center align-items-center">
+                                                    <li>
+                                                        <a href="shop-cart.html"><i class="far fa-heart"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a asp-action="BookDetails" asp-controller="Books" asp-route-id=@book.Id><i class="far fa-eye"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="shop-content">
+                                                <h3><a asp-action="BookDetails" asp-controller="Books" asp-route-id=@book.Id>@book.Title</a></h3>
+                                                <ul class="price-list">
+                                                    <li>$@book.Price</li>
+                                                    <li>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        3.4 (25)
+                                                    </li>
+                                                </ul>
+                                                <ul class="author-post">
+                                                    <li class="authot-list">
+                                                        <span class="thumb">
+                                                            Author :
+                                                        </span>
+                                                        <span class="content mt-10">@book.Author</span>
+                                                    </li>
+                                                </ul>
+                                                @if (_signInManager.IsSignedIn(User) && User.IsInRole("User"))
+                                                {
+                                                    <form asp-action="AddToCart" asp-controller="Carts" method="post">
+                                                        <input type="hidden" name="bookId" value="@book.Id" />
+                                                        <button type="submit" class="theme-btn">
+                                                            <i class="fa-solid fa-basket-shopping"></i> Add To Cart
+                                                        </button>
+                                                    </form>
+                                                }
+                                                else
+                                                {
+                                                    <div class="shop-button">
+                                                        <a asp-action="LoginFirst" asp-controller="Books" asp-route-id="@book.Id" class="theme-btn">
+                                                            <i class="fa-solid fa-basket-shopping"></i> Add To Cart
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

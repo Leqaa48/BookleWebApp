@@ -1,0 +1,117 @@
+﻿@model Publisher
+@{
+    ViewData["Title"] = "Publisher";
+}
+<br />
+<section class="team-details-section fix ">
+    <div class="container">
+        <div class="team-details-wrapper">
+            <div class="team-details-items">
+                <div class="details-image wow fadeInUp" data-wow-delay=".3s">
+                    <img src="/Bookle/main-file/assets/img/team/details.png" alt="Publisher Image" style="width:100px; height:100px;">
+                </div>
+                <div class="details-content wow fadeInUp" data-wow-delay=".5s">
+                    <h3>Publisher: @Model.Name</h3>
+                </div>
+            </div>
+            <div class="details-counter-area">
+                <div class="counter-items wow fadeInUp" data-wow-delay=".3s">
+                    <h2><span class="count">@((Model.PublishedBooks?.Count ?? 0)) </span> Books</h2>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br />
+<section class="shop-section fix">
+    <div class="container">
+        <div class="shop-default-wrapper">
+            <a asp-action="Create" asp-controller="Books" >
+                <button type="button" class="theme-btn rounded-1 mb-5">
+                    Add New Book
+                </button>
+            </a>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="woocommerce-notices-wrapper wow fadeInUp" data-wow-delay=".3s">
+                        <p>@(Model.PublishedBooks?.Count > 0 ? $"{Model.PublishedBooks.Count} Results Found" : "No Results Found")</p>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 order-2 order-md-1 wow fadeInUp" data-wow-delay=".3s">
+                    <div class="main-sidebar">
+                        <div class="single-sidebar-widget">
+                            <div class="wid-title">
+                                <h5>Search</h5>
+                            </div>
+                            <form action="#" class="search-toggle-box">
+                                <div class="input-area search-container">
+                                    <input class="search-input" type="text" placeholder="Search here">
+                                    <button class="cmn-btn search-icon">
+                                        <i class="far fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-9 col-lg-8 order-1 order-md-2 mb-5">
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-arts" role="tabpanel" aria-labelledby="pills-arts-tab">
+                            <div class="row">
+                                @if (Model.PublishedBooks != null && Model.PublishedBooks.Any())
+                                {
+                                    @foreach (var book in Model.PublishedBooks)
+                                    {
+                                        <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                                            <div class="shop-box-items">
+                                                <div class="book-thumb center">
+                                                    <a asp-action="Details" asp-controller="Books" asp-route-id="@book.Id">
+                                                        <img src=@book.BookImage alt="Book Image">
+                                                    </a>
+
+                                                    <ul class="shop-icon d-grid justify-content-center align-items-center">
+                                                        <li>
+                                                            <a asp-action="Edit" asp-controller="Books" asp-route-id=@book.Id><i class="far fa-edit"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a asp-action="Delete" asp-controller="Books" asp-route-id=@book.Id>
+                                                                <i class="far fa-trash"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a asp-action="Details" asp-controller="Books" asp-route-id="@book.Id">
+                                                                <i class="far fa-eye"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="shop-content">
+                                                    <h3>
+                                                        <a asp-action="Details" asp-controller="Books" asp-route-id="@book.Id">@book.Title</a>
+                                                    </h3>
+                                                    <ul class="price-list">
+                                                        <li>$@book.Price</li>
+                                                        <li>Stock Quantity : @book.StockQuantity
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>No books available for this publisher.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

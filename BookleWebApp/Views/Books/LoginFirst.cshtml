@@ -1,0 +1,65 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login First";
+}
+
+<section class="contact-area section--padding position-relative" style="margin-bottom:30px">
+    <span class="ring-shape ring-shape-1"></span>
+    <span class="ring-shape ring-shape-2"></span>
+    <span class="ring-shape ring-shape-3"></span>
+    <span class="ring-shape ring-shape-4"></span>
+    <span class="ring-shape ring-shape-5"></span>
+    <span class="ring-shape ring-shape-6"></span>
+    <span class="ring-shape ring-shape-7"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <div class="card card-item">
+                    <div class="card-body">
+                        
+                        <h3 class="card-title text-center fs-24 lh-35 pb-4 text-danger">
+                            You Need To loggin First...
+                        </h3>
+                        <div class="section-block"></div>
+                        <form asp-action="LoginFirst" asp-controller="Books" asp-route-bookId=@ViewBag.GetBookId class="pt-4">
+                            <div class="input-box">
+                                <label asp-for="Email" class="label-text"></label>
+                                <div class="form-group">
+                                    <input class="form-control form--control"
+                                           asp-for="Email"
+                                           placeholder="Email Address" />
+                                    <span class="la la-user input-icon"></span>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <label asp-for="Password" class="label-text"></label>
+                                <div class="input-group mb-3">
+                                    <span class="la la-lock input-icon z-index-6"></span>
+                                    <input class="form-control form--control top-bottom-left-radius-5 password-field"
+                                           asp-for="Password"
+                                           placeholder="Password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="btn-box">
+                                <div class="custom-control custom-checkbox mb-2 fs-15">
+                                    <input class="custom-control-input"
+                                           asp-for="RememberMe" />
+                                    <label class="custom-control-label custom--control-label lh-20"
+                                           asp-for="RememberMe">
+                                    </label>
+                                </div>
+                                <button class="btn theme-btn" type="submit">
+                                    Login
+                                    <i class="la la-arrow-right icon ms-1"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

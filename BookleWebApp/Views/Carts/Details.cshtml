@@ -1,0 +1,121 @@
+﻿@model BookleWebApp.Models.Cart
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<div class="cart-section section-padding">
+    <div class="container">
+        <div class="main-cart-wrapper">
+            <div class="row g-5">
+                <div class="col-xl-9">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.CartItems)
+                                {
+                                    <tr>
+                                        <td>
+                                            <span class="d-flex gap-5 align-items-center">
+                                                <form asp-action="RemoveFromCart" method="post" class="remove-icon">
+                                                    <input type="hidden" name="id" value="@item.CartItemId" />
+                                                    <button type="submit"><img src="/Bookle/main-file/assets/img/icon/icon-9.svg" alt="remove"></button>
+                                                </form>
+                                                <span class="cart">
+                                                    <img src="@item.Book.BookImage" alt="@item.Book.Title" width="52" height="68">
+                                                </span>
+                                                <span class="cart-title">@item.Book.Title</span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="cart-price">$@item.Book.Price</span>
+                                        </td>
+                                        <td>
+                                            <span class="quantity-basket">
+                                                <span class="qty">
+                                                    <!-- Decrease Button -->
+                                                    <form asp-action="DecreaseQuantity" asp-controller="Carts">
+                                                        <input type="hidden" name="id" value="@item.CartItemId" />
+                                                        <button type="submit" class="qtyminus" aria-hidden="true">−</button>
+                                                    </form>
+
+                                                    <!-- Quantity Display -->
+                                                    <input type="number" value="@item.Quantity" min="1" readonly>
+
+                                                    <!-- Increase Button -->
+                                                    <form asp-action="IncreaseQuantity" asp-controller="Carts">
+                                                        <input type="hidden" name="id" value="@item.CartItemId" />
+                                                        <button type="submit" class="qtyplus" aria-hidden="true">+</button>
+                                                    </form>
+                                                </span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="subtotal-price">$@(item.Quantity * item.Book.Price)</span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="table-responsive cart-total">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Cart Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="d-flex gap-5 align-items-center justify-content-between">
+                                            <span class="sub-title">Subtotal:</span>
+                                            <span class="sub-price">$@Model.CartItems.Sum(i => i.Quantity * i.Book.Price)</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="d-flex gap-5 align-items-center justify-content-between">
+                                            <span class="sub-title">Shipping:</span>
+                                            <span class="sub-text">Free</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="d-flex gap-5 align-items-center justify-content-between">
+                                            <span class="sub-title">Total:</span>
+                                            <span class="sub-price sub-price-total">$@Model.CartItems.Sum(i => i.Quantity * i.Book.Price)</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a asp-action="Create" asp-controller="Orders"> 
+                            <button class="theme-btn">Proceed to checkout</button>
+                        </a>
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
