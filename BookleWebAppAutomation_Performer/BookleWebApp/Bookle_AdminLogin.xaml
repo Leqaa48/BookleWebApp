@@ -2,6 +2,7 @@
   <x:Members>
     <x:Property Name="in_UserName" Type="InArgument(x:String)" />
     <x:Property Name="In_Password" Type="InArgument(ss:SecureString)" />
+    <x:Property Name="out_LoginFlag" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -99,22 +100,19 @@
       <AssemblyReference>System.Collections</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Bookle_AdminLogin" sap:VirtualizedContainerService.HintSize="1317.6,4524.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Bookle_AdminLogin" sap:VirtualizedContainerService.HintSize="1335.2,3207.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap2010:Annotation.AnnotationText="PDD Section: 1.3&#xA;PreCondation: Login page Opend&#xA;PostCondation: Admin Logged&#xA;Argument: in_Username/in_Password" sap:VirtualizedContainerService.HintSize="1317.6,4501.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="PDD Section: 1.3&#xA;PreCondation: Login page Opend&#xA;PostCondation: Admin Logged&#xA;Argument: in_Username/in_Password / out_LoginFlag" sap:VirtualizedContainerService.HintSize="1335.2,3184" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="s:DateTime" Name="DateTime_StartDate" />
-        <Variable x:TypeArguments="x:String" Name="str_FileName">
-          <Variable.Default>
-            <Literal x:TypeArguments="x:String">Bookle_AdminLogin.xaml</Literal>
-          </Variable.Default>
-        </Variable>
+        <Variable x:TypeArguments="x:String" Default="Bookle_AdminLogin.xaml" Name="str_FileName" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -122,7 +120,7 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign sap:VirtualizedContainerService.HintSize="1284,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign sap:VirtualizedContainerService.HintSize="1301.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="s:DateTime">[DateTime_StartDate]</OutArgument>
         </Assign.To>
@@ -130,25 +128,25 @@
           <InArgument x:TypeArguments="s:DateTime">[Now]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:LogMessage DisplayName="Log Message || Start " sap:VirtualizedContainerService.HintSize="1284,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[str_FileName+&quot; :: Worflow started &quot;]" />
-      <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="1284,3888.8" sap2010:WorkflowViewState.IdRef="RetryScope_1">
+      <ui:LogMessage DisplayName="Log Message || Start " sap:VirtualizedContainerService.HintSize="1301.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[str_FileName+&quot; :: Worflow started &quot;]" />
+      <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="1301.6,2571.2" sap2010:WorkflowViewState.IdRef="RetryScope_1">
         <ui:RetryScope.ActivityBody>
           <ActivityAction>
-            <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="1242.4,3680.8" sap2010:WorkflowViewState.IdRef="Sequence_10">
+            <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="1260,2363.2" sap2010:WorkflowViewState.IdRef="Sequence_10">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1208.8,3620.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1226.4,2303.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                 <TryCatch.Try>
-                  <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="1207.2,2631.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="1224.8,1313.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Sequence DisplayName="Precondetion" sap:VirtualizedContainerService.HintSize="1173.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <Sequence DisplayName="Precondetion" sap:VirtualizedContainerService.HintSize="1191.2,56.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:Boolean" Name="bool_Precondetion" />
                       </Sequence.Variables>
@@ -200,10 +198,11 @@
                         </If.Else>
                       </If>
                     </Sequence>
-                    <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="1173.6,1374.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="1191.2,56.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge Bookle - Book Store " HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="483.2,1282.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="03e69bd2-200c-4d72-845f-7b5ffdab5eec" Version="V2">
@@ -222,7 +221,7 @@
                                 <uix:NTypeInto.Target>
                                   <uix:TargetAnchorable BrowserURL="localhost/Account/Login" CVScreenId="548071b1-152b-4ea0-a3b9-12511ed45b23" ContentHash="ZbU35lb7xkW58r__NnzU8w" DesignTimeRectangle="447, 525, 1039, 47" DesignTimeScaleFactor="1.25" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='Email' tag='INPUT' /&gt;" Guid="8033c5c4-cd95-4430-b2c4-6b9e6a5063be" InformativeScreenshot="fb7e3d2d993b367842d774e2db43146e.png" IsResponsive="True" Reference="THu-kOOmM06rPP-LS3H8zw/TFrhNSEtOEOTfNQPWf7pxg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Bookle - Book Store WooCommerce Html Template' /&gt;" SearchSteps="Selector" Version="V5" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
-                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                                         <uix:Target CVScreenId="548071b1-152b-4ea0-a3b9-12511ed45b23" DesignTimeRectangle="447, 490, 50, 35" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='LABEL' aaname='Email' /&gt;" Guid="a6fa74ad-952d-4c9a-96e0-b8e8da9b1cf7" SearchSteps="Selector" />
                                       </scg:List>
                                     </uix:TargetAnchorable.Anchors>
@@ -243,7 +242,7 @@
                                 <uix:NTypeInto.Target>
                                   <uix:TargetAnchorable BrowserURL="localhost/Account/Login" CVScreenId="9b17bb51-ae3a-4e40-8024-2d2c019ac2ba" ContentHash="4DDlHygrXEe8GpGSp2_v3w" DesignTimeRectangle="446, 607, 1041, 47" DesignTimeScaleFactor="1.25" ElementType="InputBoxPassword" FullSelectorArgument="&lt;webctrl id='Password' tag='INPUT' /&gt;" Guid="e872e891-296b-43c4-b35d-dcd2ee87eefd" InformativeScreenshot="900c28cdaa65533349fe037e6a4b0bb8.png" Reference="THu-kOOmM06rPP-LS3H8zw/8oh4NLv6MkawnSb7JIIJlw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Bookle - Book Store WooCommerce Html Template' /&gt;" SearchSteps="Selector" Version="V5" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
-                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                                         <uix:Target CVScreenId="9b17bb51-ae3a-4e40-8024-2d2c019ac2ba" CvTextArea="446, 580, 93, 17" CvTextArgument="Password" CvType="Text" DesignTimeRectangle="447, 572, 92, 35" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Password' tag='LABEL' type='' class='label-text' check:innerText='Password' /&gt;" Guid="928301a9-0df4-4722-ab1a-8200c5d52cbe" SearchSteps="FuzzySelector, CV" />
                                       </scg:List>
                                     </uix:TargetAnchorable.Anchors>
@@ -254,7 +253,7 @@
                                 <uix:NClick.Target>
                                   <uix:TargetAnchorable BrowserURL="localhost/Account/Login" CVScreenId="4049b618-8e67-42fd-82ce-c72a9f7c8f0b" ContentHash="8MXXMNl8ukmAf1aOBk6r1w" DesignTimeRectangle="447, 681, 16, 17" DesignTimeScaleFactor="1.25" ElementType="CheckBox" FullSelectorArgument="&lt;webctrl id='RememberMe' tag='INPUT' /&gt;" Guid="2c97ae5f-b5f3-49e0-a5e8-be1ab2ba0f21" InformativeScreenshot="cdfb8dd94d0747771c6951d903e68117.png" Reference="THu-kOOmM06rPP-LS3H8zw/PuIJyf76p0enxicXPY83Sg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Bookle - Book Store WooCommerce Html Template' /&gt;" SearchSteps="Selector" Version="V5" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
-                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                                         <uix:Target CVScreenId="4049b618-8e67-42fd-82ce-c72a9f7c8f0b" CvTextArea="467, 681, 133, 18" CvTextArgument="RememberMe" CvType="Text" DesignTimeRectangle="469, 674, 132, 35" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='RememberMe' tag='LABEL' type='' class='custom-control-label custom--control-label lh-20' check:innerText='RememberMe' /&gt;" Guid="80b34aab-db2f-498a-b768-df11e579f5e6" SearchSteps="FuzzySelector, CV" />
                                       </scg:List>
                                     </uix:TargetAnchorable.Anchors>
@@ -294,7 +293,7 @@
                         </uix:NApplicationCard.TargetApp>
                       </uix:NApplicationCard>
                     </Sequence>
-                    <Sequence DisplayName="Postcondetion" sap:VirtualizedContainerService.HintSize="1173.6,1140" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <Sequence DisplayName="Postcondetion" sap:VirtualizedContainerService.HintSize="1191.2,1140" sap2010:WorkflowViewState.IdRef="Sequence_5">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:Boolean" Name="bool_Postcondetion" />
                       </Sequence.Variables>
@@ -304,7 +303,7 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Pick sap:VirtualizedContainerService.HintSize="1140,1056.8" sap2010:WorkflowViewState.IdRef="Pick_1">
+                      <Pick sap:VirtualizedContainerService.HintSize="1157.6,1056.8" sap2010:WorkflowViewState.IdRef="Pick_1">
                         <PickBranch sap:VirtualizedContainerService.HintSize="507.2,987.2" sap2010:WorkflowViewState.IdRef="PickBranch_1">
                           <PickBranch.Trigger>
                             <ui:UiElementExists DisplayName="Element Exists " Exists="[bool_Postcondetion]" sap:VirtualizedContainerService.HintSize="417.6,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
@@ -350,9 +349,9 @@
                             </If.Else>
                           </If>
                         </PickBranch>
-                        <PickBranch sap:VirtualizedContainerService.HintSize="539.2,987.2" sap2010:WorkflowViewState.IdRef="PickBranch_2">
+                        <PickBranch sap:VirtualizedContainerService.HintSize="556.8,987.2" sap2010:WorkflowViewState.IdRef="PickBranch_2">
                           <PickBranch.Trigger>
-                            <ui:UiElementExists Exists="{x:Null}" DisplayName="Element Exists || Invaled username or password" sap:VirtualizedContainerService.HintSize="449.6,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+                            <ui:UiElementExists Exists="{x:Null}" DisplayName="Element Exists || Invaled username or password" sap:VirtualizedContainerService.HintSize="467.2,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
                               <ui:UiElementExists.Target>
                                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a71c108d-b566-428c-a14e-9d0ff7761416" InformativeScreenshot="8d516a1e586667d8776e78975fa2e425" Selector="&lt;html app='msedge.exe' title='Bookle - Book Store WooCommerce Html Template' /&gt;&lt;webctrl tag='LI' aaname='Invalid User or password' /&gt;">
                                   <ui:Target.TimeoutMS>
@@ -365,14 +364,21 @@
                               </ui:UiElementExists.Target>
                             </ui:UiElementExists>
                           </PickBranch.Trigger>
-                          <Sequence sap:VirtualizedContainerService.HintSize="449.6,348" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                          <Sequence sap:VirtualizedContainerService.HintSize="467.2,339.2" sap2010:WorkflowViewState.IdRef="Sequence_18">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Fatal" Message="[&quot;Postcondetion Faild&quot;]" />
-                            <Throw Exception="[New BusinessRuleException(str_FileName+&quot; :: Invalid username or password&quot;)]" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Throw_5" />
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Fatal" Message="[&quot;Postcondetion Faild&quot;]" />
+                            <Assign sap:VirtualizedContainerService.HintSize="433.6,104.8" sap2010:WorkflowViewState.IdRef="Assign_2">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[out_LoginFlag]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">RED</InArgument>
+                              </Assign.Value>
+                            </Assign>
                           </Sequence>
                         </PickBranch>
                       </Pick>
@@ -385,13 +391,13 @@
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1207.2,348" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1224.8,348" sap2010:WorkflowViewState.IdRef="Sequence_7">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1173.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[exception.Message]">
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1191.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[exception.Message]">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -399,7 +405,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:LogMessage>
-                        <Throw Exception="[New System.Exception(str_FileName+ &quot; - &quot; + exception.Source + &quot; - &quot; + exception.Message)]" sap:VirtualizedContainerService.HintSize="1173.6,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                        <Throw Exception="[New System.Exception(str_FileName+ &quot; - &quot; + exception.Source + &quot; - &quot; + exception.Message)]" sap:VirtualizedContainerService.HintSize="1191.2,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
                       </Sequence>
                     </ActivityAction>
                   </Catch>
